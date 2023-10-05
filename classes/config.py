@@ -16,4 +16,4 @@ class Config:
                 with open(config_default, "r") as f:
                     self.data = json.load(f)
             else:
-                 raise FileNotFoundError(f"Config file '{config_default}' not found.")
+                raise FileNotFoundError(f"Config file '{config_default}' not found.")

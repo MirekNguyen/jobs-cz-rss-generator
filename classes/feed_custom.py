@@ -14,7 +14,8 @@ class FeedCustom(Feed):
             config.data.get("feed_subtitle"),
             config.data.get("feed_link_href"),
         )
-        for item in data.data:
+        sorted_data = sorted(data.data, key=lambda item: item.job_status)
+        for item in sorted_data:
             fe = self.fg.add_entry()
             fe.id(item.job_title)
             fe.title(

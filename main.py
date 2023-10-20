@@ -1,8 +1,8 @@
 import argparse
 
-from classes.config import Config
-from classes.feed_custom import FeedCustom
-from classes.web_scrape_custom import WebScrapeCustom
+from classes.models.config import Config
+from classes.controllers.feed_custom import FeedCustom
+from classes.controllers.web_scrape_custom import WebScrapeCustom
 
 
 parser = argparse.ArgumentParser(description="Create RSS feed from web scraping")

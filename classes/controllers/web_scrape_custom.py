@@ -1,5 +1,5 @@
-from classes.job_article import JobArticle
-from classes.web_scrape import WebScrape
+from classes.models.job_article import JobArticle
+from classes.models.web_scrape import WebScrape
 
 
 class WebScrapeCustom(WebScrape):

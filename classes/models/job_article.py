@@ -5,11 +5,3 @@ class JobArticle:
         self.job_status = job_status
         self.location = location
         self.company_name = company_name
-
-    def print(self):
-        print("Job Title:", self.job_title)
-        print("Job Link:", self.job_link)
-        print("Job Status:", self.job_status)
-        print("Company Name:", self.company_name)
-        print("Location:", self.location)
-        print("----")

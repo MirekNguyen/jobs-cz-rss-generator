@@ -1,8 +1,8 @@
 import argparse
 
 from classes.models.config import Config
-from classes.controllers.feed_custom import FeedCustom
-from classes.controllers.web_scrape_custom import WebScrapeCustom
+from classes.controllers.feed_controller import FeedController
+from classes.controllers.web_scrape_controller import WebScrapeController
 
 
 parser = argparse.ArgumentParser(description="Create RSS feed from web scraping")
@@ -11,5 +11,5 @@ parser.add_argument("-c", "--config", help="Specify configuration file location"
 args = parser.parse_args()
 
 config = Config(args.config)
-jobs = WebScrapeCustom(config.data.get("url"))
-feed = FeedCustom(config, jobs, args.output)
+jobs = WebScrapeController(config.data.get("url"))
+feed = FeedController(config, jobs.find_data(), args.output)

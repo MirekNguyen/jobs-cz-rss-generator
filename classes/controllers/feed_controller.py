@@ -6,17 +6,17 @@ import pytz
 from classes.models.feed import Feed
 
 
-class FeedCustom(Feed):
+class FeedController():
     def __init__(self, config, data, output_file):
-        super().__init__(
+        feed = Feed(
             config.data.get("feed_id"),
             config.data.get("feed_title"),
             config.data.get("feed_subtitle"),
             config.data.get("feed_link_href"),
         )
-        sorted_data = sorted(data.data, key=lambda item: item.job_status)
+        sorted_data = sorted(data, key=lambda item: item.job_status)
         for item in sorted_data:
-            fe = self.fg.add_entry()
+            fe = feed.fg.add_entry()
             fe.id(item.job_title)
             fe.title(
                 item.job_status + " | " + item.company_name + " | " + item.job_title
@@ -46,5 +46,5 @@ class FeedCustom(Feed):
                 fe.pubDate(
                     pytz.timezone(config.data.get("timezone")).localize(datetime.now())
                 )
-        self.fg.rss_str(pretty=True)
-        self.fg.rss_file(output_file)
+        feed.fg.rss_str(pretty=True)
+        feed.fg.rss_file(output_file)

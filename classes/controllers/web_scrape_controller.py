@@ -2,9 +2,11 @@ from classes.models.job_article import JobArticle
 from classes.models.web_scrape import WebScrape
 
 
-class WebScrapeCustom(WebScrape):
+class WebScrapeController():
+    def __init__(self, url):
+        self.webscrape = WebScrape(url)
     def find_data(self):
-        container = self.soup.find(id="search-result-container")
+        container = self.webscrape.soup.find(id="search-result-container")
         if container:
             articles = container.find_all("article", class_="SearchResultCard")
             jobs = []
@@ -13,7 +15,7 @@ class WebScrapeCustom(WebScrape):
                 jobs.append(job)
             return jobs
         else:
-            self.trigger_error("Element with ID 'search-result-container' not found.")
+            self.webscrape.trigger_error("Element with ID 'search-result-container' not found.")
 
     def extract_data(self, article):
         if article:
@@ -39,6 +41,6 @@ class WebScrapeCustom(WebScrape):
                 )
                 return job
             else:
-                self.trigger_error("Article attribute was not found.")
+                self.webscrape.trigger_error("Article attribute was not found.")
         else:
-            self.trigger_error("Article was not found.")
+            self.webscrape.trigger_error("Article was not found.")

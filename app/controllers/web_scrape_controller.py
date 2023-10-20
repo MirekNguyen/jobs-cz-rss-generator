@@ -4,20 +4,25 @@ from app.models import JobArticle, WebScrape
 class WebScrapeController():
     def __init__(self, url):
         self.webscrape = WebScrape(url)
+        self.data = self.find_data()
     def find_data(self):
-        container = self.webscrape.soup.find(id="search-result-container")
-        if container:
+        try:
+            container = self.webscrape.soup.find(id="search-result-container")
             articles = container.find_all("article", class_="SearchResultCard")
             jobs = []
             for article in articles:
                 job = self.extract_data(article)
                 jobs.append(job)
+            if not jobs:
+                self.webscrape.trigger_error("Element with class 'SearchResultCard' not found.")
+                return []
             return jobs
-        else:
-            self.webscrape.trigger_error("Element with ID 'search-result-container' not found.")
+        except:
+            self.webscrape.trigger_error("Element with class 'SearchResultCard' not found.")
+            return
 
     def extract_data(self, article):
-        if article:
+        try:
             # Extract data from the <article> element
             job_title = article.find(
                 "h2", class_="SearchResultCard__title"
@@ -34,12 +39,12 @@ class WebScrapeController():
             company_name = article.find(
                 "li", class_="SearchResultCard__footerItem"
             ).text.strip()
-            if job_title and job_link and job_status and location and company_name:
-                job = JobArticle(
-                    job_title, job_link, job_status, location, company_name
-                )
-                return job
-            else:
-                self.webscrape.trigger_error("Article attribute was not found.")
-        else:
+        except:
+            self.webscrape.trigger_error("Attribute was not found.")
+            return
+        if not all([job_title, job_link, job_status, location, company_name]):
             self.webscrape.trigger_error("Article was not found.")
+        job = JobArticle(
+            job_title, job_link, job_status, location, company_name
+        )
+        return job

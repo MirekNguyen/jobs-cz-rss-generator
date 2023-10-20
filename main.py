@@ -2,4 +2,4 @@ from app.controllers import ConfigController, FeedController, WebScrapeControlle
 
 config = ConfigController()
 jobs = WebScrapeController(config.data.get("url"))
-feed = FeedController(config, jobs.find_data(), config.args.output)
+feed = FeedController(config, jobs, config.args.output)

@@ -1,4 +1,4 @@
-from classes.controllers import ConfigController, FeedController, WebScrapeController
+from app.controllers import ConfigController, FeedController, WebScrapeController
 
 config = ConfigController()
 jobs = WebScrapeController(config.data.get("url"))

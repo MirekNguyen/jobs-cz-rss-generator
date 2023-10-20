@@ -3,7 +3,7 @@ from datetime import datetime
 
 import pytz
 
-from classes.models.feed import Feed
+from app.models.feed import Feed
 
 
 class FeedController():

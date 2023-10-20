@@ -1,5 +1,5 @@
 import argparse
-from classes.models.config import Config
+from app.models.config import Config
 
 
 class ConfigController:

@@ -1,4 +1,4 @@
-from classes.models import JobArticle, WebScrape
+from app.models import JobArticle, WebScrape
 
 
 class WebScrapeController():

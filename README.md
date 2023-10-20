@@ -1,5 +1,7 @@
 # Jobs.cz RSS Generator
 
+Python script that creates an RSS feed by web scraping job listings from the jobs.cz portal.
+
 ## Prerequisities
 
 You can run the script in two ways
@@ -16,24 +18,24 @@ You can run the script in two ways
 
 ## Building and Running with Docker
 
-1. Navigate to the directory containing the Dockerfile.
+1. Navigate to the directory containing the docker-compose.yml.
 
 ```
 cd <project>/docker
 ```
 
-2. Run the following command to build the Docker image:
+2. Run the service using the following command
 
 ```
 docker-compose up -d
 ```
 
-3. Alternatively, you can build it using Dockerfile
+3. Alternatively, you can build it on your own using Dockerfile
 
 -   Navigate to the root directory of the project
 
 ```
-cd </project>
+cd <project>
 ```
 
 -   Build
